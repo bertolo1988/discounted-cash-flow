@@ -1,0 +1,19 @@
+{
+  "extends": ["eslint:recommended", "prettier"],
+  "env": {
+    "mocha": true,
+    "node": true,
+    "es6": true
+  },
+  "plugins": ["prettier", "sort-exports"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "script"
+  },
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "prettier/prettier": "error",
+    "no-return-await": "error",
+    "sort-exports/sort-exports": ["error", { "sortDir": "asc" }]
+  }
+}
