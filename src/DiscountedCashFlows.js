@@ -4,11 +4,11 @@ const Utils = require('./Utils')
 class DiscountedCashFlows {
   static MAX_YEARS = 10
 
-  static calculatePresentValueArray(fcfArray, discountRate) {
+  static getPresentValueFutureFlows(fcfArray, discountRate) {
     let result = [];
     for (let i = 0; i < DiscountedCashFlows.MAX_YEARS; i++) {
       let denominator = Math.pow(1 + discountRate, i + 1);
-      result.push(Utils.roundToDecimals(fcfArray[i] / denominator));
+      result.push(fcfArray[i] / denominator);
     }
     return result;
   }
@@ -45,7 +45,7 @@ class DiscountedCashFlows {
       growthRates
     );
     let fcfTimesPE = Utils.roundToDecimals(fcfArray[fcfArray.length - 1] * terminalPE, rounding);
-    let pvArray = calculatePresentValueArray(fcfArray, discountRate);
+    let pvArray = DiscountedCashFlows.getPresentValueFutureFlows(fcfArray, discountRate);
     let lastPV = Utils.roundToDecimals(fcfTimesPE / Math.pow(1 + discountRate, 10), rounding);
     let pvFutureCashFlows = Utils.roundToDecimals(
       pvArray.reduce((a, b) => a + b, 0) + lastPV, rounding

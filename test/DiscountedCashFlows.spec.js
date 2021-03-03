@@ -89,7 +89,6 @@ describe('DiscountedCashFlows', async () => {
     it('should calculate growth with a rate of 0', () => {
       const firstValue = 10
       const growthRates = [0]
-      const decimals = 1
       const freeCashFlows = DiscountedCashFlows.getGrowthOfValue(firstValue, growthRates)
       freeCashFlows.every(e => e.should.be.eql(firstValue))
     })
@@ -105,6 +104,32 @@ describe('DiscountedCashFlows', async () => {
         53.8, 52.1, 51.6,
         51.1, 50.6, 50.1,
         49.6
+      ])
+    })
+  })
+
+  describe('getPresentValueFutureFlows', () => {
+    it('calculate prevent value of apple future cash flows', () => {
+      const appleFreeCashFlow = [
+        58.90,
+        65.96,
+        73.88,
+        82.74,
+        92.67,
+        99.16,
+        106.1,
+        113.53,
+        121.48,
+        129.98]
+      const discountRate = 0.1
+      const decimals = 2
+      const rawPresentValues = DiscountedCashFlows.getPresentValueFutureFlows(appleFreeCashFlow, discountRate)
+      let roundedPresentValues = rawPresentValues.map(e => Utils.roundToDecimals(e, decimals))
+      roundedPresentValues.should.be.eql([
+        53.55, 54.51, 55.51,
+        56.51, 57.54, 55.97,
+        54.45, 52.96, 51.52,
+        50.11
       ])
     })
   })
