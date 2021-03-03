@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Present value of future cash flows.",
   "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
   "devDependencies": {
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
@@ -24,11 +27,9 @@
     "cashflow",
     "cash",
     "present",
-    "value"
+    "value",
+    "valuation","stocks","investing"
   ],
   "author": "bertolo1988 <tiagobertolo@gmail.com> (https://github.com/bertolo1988)",
-  "license": "MIT",
-  "dependencies": {
-    "lodash": "^4.17.21"
-  }
+  "license": "MIT"
 }
