@@ -1,8 +1,8 @@
 {
   "name": "dcf",
   "version": "1.0.0",
-  "description": "Present value of future cash flows.",
-  "main": "index.js",
+  "description": "Calculates the present value of future cash flows.",
+  "main": "src/DiscountedCashFlows.js",
   "dependencies": {
     "lodash": "^4.17.21"
   },
@@ -28,8 +28,18 @@
     "cash",
     "present",
     "value",
-    "valuation","stocks","investing"
+    "valuation",
+    "stocks",
+    "investing"
   ],
+  "homepage": "https://github.com/bertolo1988/dcf#readme",
   "author": "bertolo1988 <tiagobertolo@gmail.com> (https://github.com/bertolo1988)",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bertolo1988/dcf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bertolo1988/dcf/issues"
+  }
 }
