@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const Utils = require('./Utils')
 
 class DiscountedCashFlows {
   static MAX_YEARS = 10
@@ -7,7 +8,7 @@ class DiscountedCashFlows {
     let result = [];
     for (let i = 0; i < DiscountedCashFlows.MAX_YEARS; i++) {
       let denominator = Math.pow(1 + discountRate, i + 1);
-      result.push(roundToDecimals(fcfArray[i] / denominator));
+      result.push(Utils.roundToDecimals(fcfArray[i] / denominator));
     }
     return result;
   }
@@ -18,15 +19,16 @@ class DiscountedCashFlows {
     return growthRates[rateIndex]
   }
 
-  static calculateFreeCashFlowArray(
+  static getGrowthOfValue(
     firstValue,
     growthRates
   ) {
-    let result = [roundToDecimals(firstValue)];
-    for (let i = 1; i < MAX_YEARS; i++) {
+    let result = [firstValue];
+    for (let i = 1; i < DiscountedCashFlows.MAX_YEARS; i++) {
       let previous = result[i - 1];
       let growthRate = DiscountedCashFlows.getGrowthRateForYear(growthRates, i)
-      result.push(roundToDecimals(previous + previous * growthRate));
+      let rawFreeCashFlow = previous + previous * growthRate
+      result.push(rawFreeCashFlow);
     }
     return result;
   }
@@ -38,15 +40,15 @@ class DiscountedCashFlows {
     discountRate = 0.1,
     rounding = 2
   ) {
-    let fcfArray = DiscountedCashFlows.calculateFreeCashFlowArray(
+    let fcfArray = DiscountedCashFlows.getGrowthOfValue(
       freeCashFlow,
       growthRates
     );
-    let fcfTimesPE = roundToDecimals(fcfArray[fcfArray.length - 1] * terminalPE);
+    let fcfTimesPE = Utils.roundToDecimals(fcfArray[fcfArray.length - 1] * terminalPE, rounding);
     let pvArray = calculatePresentValueArray(fcfArray, discountRate);
-    let lastPV = roundToDecimals(fcfTimesPE / Math.pow(1 + discountRate, 10));
-    let pvFutureCashFlows = roundToDecimals(
-      pvArray.reduce((a, b) => a + b, 0) + lastPV
+    let lastPV = Utils.roundToDecimals(fcfTimesPE / Math.pow(1 + discountRate, 10), rounding);
+    let pvFutureCashFlows = Utils.roundToDecimals(
+      pvArray.reduce((a, b) => a + b, 0) + lastPV, rounding
     );
     return {
       pvFutureCashFlows

@@ -1,5 +1,7 @@
 require('should');
+const Utils = require('../src/Utils')
 const DiscountedCashFlows = require('../src/DiscountedCashFlows');
+const { first } = require('lodash');
 
 
 describe('DiscountedCashFlows', async () => {
@@ -61,6 +63,49 @@ describe('DiscountedCashFlows', async () => {
         const selectedGrowthRate = DiscountedCashFlows.getGrowthRateForYear(growthRates, index)
         selectedGrowthRate.should.be.eql(growthRates[growthRate])
       })
+    })
+  })
+
+  describe('getGrowthOfValue', () => {
+    it('calculate the growth of apple free cash flow over the years, 12% in first 5, 7% onwards', () => {
+      const firstValue = 58.896
+      const growthRates = [0.12, 0.07]
+      const decimals = 2
+      const freeCashFlows = DiscountedCashFlows.getGrowthOfValue(firstValue, growthRates)
+      let roundedFreeCashFlows = freeCashFlows.map(e => Utils.roundToDecimals(e, decimals))
+      roundedFreeCashFlows.should.be.eql([
+        58.90,
+        65.96,
+        73.88,
+        82.74,
+        92.67,
+        99.16,
+        106.1,
+        113.53,
+        121.48,
+        129.98])
+    })
+
+    it('should calculate growth with a rate of 0', () => {
+      const firstValue = 10
+      const growthRates = [0]
+      const decimals = 1
+      const freeCashFlows = DiscountedCashFlows.getGrowthOfValue(firstValue, growthRates)
+      freeCashFlows.every(e => e.should.be.eql(firstValue))
+    })
+
+    it('should calculate growth with rate -3% in first 5 years and -1% onwards', () => {
+      const firstValue = 58.896
+      const growthRates = [-0.03, -0.01]
+      const decimals = 1
+      const freeCashFlows = DiscountedCashFlows.getGrowthOfValue(firstValue, growthRates)
+      let roundedFreeCashFlows = freeCashFlows.map(e => Utils.roundToDecimals(e, decimals))
+      roundedFreeCashFlows.should.be.eql([
+        58.9, 57.1, 55.4,
+        53.8, 52.1, 51.6,
+        51.1, 50.6, 50.1,
+        49.6
+      ])
     })
   })
 
