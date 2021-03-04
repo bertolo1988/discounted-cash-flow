@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Calculates the present value of future cash flows.",
   "main": "src/DiscountedCashFlows.js",
-  "dependencies": {
-    "lodash": "^4.17.21"
-  },
   "devDependencies": {
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
@@ -17,11 +14,12 @@
     "sinon": "^9.2.1"
   },
   "scripts": {
-    "prettier": "npx prettier --check .",
+    "prettier:fix": "npx prettier --check .",
+    "prettier:check": "npx prettier --check .",
     "clean": "rm -rf node_modules && npm i",
     "lint": "eslint .",
-    "test-only": "mocha --bail --recursive test",
-    "test": "npm run prettier && npm run lint && npm run test-only"
+    "test:only": "mocha --bail --recursive test",
+    "test": "npm run prettier:check && npm run lint && npm run test:only"
   },
   "keywords": [
     "cashflow",
@@ -41,5 +39,8 @@
   },
   "bugs": {
     "url": "https://github.com/bertolo1988/dcf/issues"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
