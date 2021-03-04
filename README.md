@@ -16,7 +16,7 @@ The purpose of DCF analysis is to estimate the money an investor would receive f
 
 ## How to use
 
-Check [DiscountedCashFlow.spec.js](./test/DiscountedCashFlow.spec.js) for examples.
+Check tests folder for examples.
 
 ```
 DiscountedCashFlow.calculate(
