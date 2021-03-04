@@ -16,7 +16,7 @@ The purpose of DCF analysis is to estimate the money an investor would receive f
 
 ## How to use
 
-Check [./test/DiscountedCashFlow.spec.js] for examples.
+Check [test/DiscountedCashFlow.spec.js] for examples.
 
 ```
 DiscountedCashFlow.calculate(
@@ -31,11 +31,11 @@ DiscountedCashFlow.calculate(
 
 ### firstFreeCashFlow
 
-The first free cash flow can sometimes be found in the cash flow statement or be calculated as shown [here](https://www.investopedia.com/terms/f/freecashflow.asp).
+The first free cash flow that will be grown and discounted.
 
 ### growthRate
 
-The growthRate should be provided as an array. Each value of this array will affect a portion of the years depending on the amount of values provided. 
+The growthRates that will be applied should be provided as an array. Each value of this array will affect a portion of the years depending on the amount of values provided. The maximum number of years on the analysis is 10.
 
 Example: [0.05, 0.02] - the applied growth rate will be 5% for the first 5 years and 2% for the last 5.
 
