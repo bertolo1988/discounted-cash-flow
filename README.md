@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bertolo1988/discounted-cash-flow.svg?branch=main)](https://travis-ci.org/bertolo1988/discounted-cash-flow)
+
 # discounted-cash-flow
 
 Discounted cash flow (DCF) is a valuation method used to estimate the value of an investment based on its expected future cash flows. DCF analysis attempts to figure out the value of an investment today, based on projections of how much money it will generate in the future.
