@@ -4,11 +4,16 @@ const Utils = require('./Utils')
 class DiscountedCashFlows {
   static MAX_YEARS = 10
 
+  static getDiscountedValueByYear(value, discountRate, year) {
+    let denominator = Math.pow(1 + discountRate, year);
+    return value / denominator
+  }
+
   static getPresentValueFutureFlows(fcfArray, discountRate) {
     let result = [];
     for (let i = 0; i < DiscountedCashFlows.MAX_YEARS; i++) {
-      let denominator = Math.pow(1 + discountRate, i + 1);
-      result.push(fcfArray[i] / denominator);
+      const presentValue = DiscountedCashFlows.getDiscountedValueByYear(fcfArray[i], discountRate, i + 1)
+      result.push(presentValue);
     }
     return result;
   }
@@ -33,6 +38,14 @@ class DiscountedCashFlows {
     return result;
   }
 
+  static getFutureSaleValue(fcfArray, terminalPE) {
+    return fcfArray[fcfArray.length - 1] * terminalPE
+  }
+
+  static getTotalPresentValue(presentValueFutureCashFlows, presentValueFutureSale) {
+    return presentValueFutureCashFlows.reduce((a, b) => a + b, 0) + presentValueFutureSale
+  }
+
   static calculate(
     freeCashFlow,
     growthRates = [0],
@@ -40,18 +53,20 @@ class DiscountedCashFlows {
     discountRate = 0.1,
     rounding = 2
   ) {
-    let fcfArray = DiscountedCashFlows.getGrowthOfValue(
+    let futureCashFlows = DiscountedCashFlows.getGrowthOfValue(
       freeCashFlow,
       growthRates
     );
-    let fcfTimesPE = Utils.roundToDecimals(fcfArray[fcfArray.length - 1] * terminalPE, rounding);
-    let pvArray = DiscountedCashFlows.getPresentValueFutureFlows(fcfArray, discountRate);
-    let lastPV = Utils.roundToDecimals(fcfTimesPE / Math.pow(1 + discountRate, 10), rounding);
-    let pvFutureCashFlows = Utils.roundToDecimals(
-      pvArray.reduce((a, b) => a + b, 0) + lastPV, rounding
-    );
+    let presentValueFutureCashFlows = DiscountedCashFlows.getPresentValueFutureFlows(futureCashFlows, discountRate);
+    const valueFutureSale = DiscountedCashFlows.getFutureSaleValue(futureCashFlows, terminalPE)
+    let presentValueFutureSale = DiscountedCashFlows.getDiscountedValueByYear(valueFutureSale, discountRate, 10)
+    const totalPresentValue = DiscountedCashFlows.getTotalPresentValue(presentValueFutureCashFlows, presentValueFutureSale)
     return {
-      pvFutureCashFlows
+      futureCashFlows,
+      presentValueFutureCashFlows,
+      valueFutureSale,
+      presentValueFutureSale,
+      totalPresentValue
     };
   }
 }

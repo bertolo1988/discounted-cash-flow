@@ -108,6 +108,34 @@ describe('DiscountedCashFlows', async () => {
     })
   })
 
+  describe('getDiscountedValueByYear', () => {
+    it('get discounted value on year 7 with discount rate of 0.1', () => {
+      const value = 106.1
+      const discountRate = 0.1
+      const year = 7
+      const discountedValue = DiscountedCashFlows.getDiscountedValueByYear(value, discountRate, year)
+      discountedValue.should.be.eql(54.44607634427795)
+    })
+  })
+
+  describe('getTotalPresentValue', () => {
+    it('calculate total present value: future cash flows plus sale value, both discounted to present value', () => {
+      const presentValueFutureCashFlows = [53.54,
+        54.52,
+        55.51,
+        56.52,
+        57.54,
+        55.97,
+        54.45,
+        52.96,
+        51.52,
+        50.11]
+      const presentValueFutureSale = 751.69
+      const result = DiscountedCashFlows.getTotalPresentValue(presentValueFutureCashFlows, presentValueFutureSale)
+      result.should.be.eql(1294.33)
+    })
+  })
+
   describe('getPresentValueFutureFlows', () => {
     it('calculate prevent value of apple future cash flows', () => {
       const appleFreeCashFlow = [
