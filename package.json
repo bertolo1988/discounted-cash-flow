@@ -1,8 +1,8 @@
 {
-  "name": "dcf",
+  "name": "intrinsic-value",
   "version": "1.0.0",
   "description": "Calculates the present value of future cash flows.",
-  "main": "src/DiscountedCashFlows.js",
+  "main": "src/IntrinsicValue.js",
   "devDependencies": {
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",

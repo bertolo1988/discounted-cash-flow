@@ -1,16 +1,18 @@
-# dcf
+# intrinsic-value
 
 Calculates present value of future cash flows commonly refered as Intrinsic value.
 Based on [Investing with Tom video](https://www.youtube.com/watch?v=cI8ZSf0nkFs).
 
 ## Installation
 
-`npm install dcf`
+`npm install intrinsic-value --save`
 
 ## How to use
 
+Check [./test/IntrinsicValue.spec.js] for examples.
+
 ```
-DiscountedCashFlows.calculate(
+IntrinsicValue.calculate(
   firstFreeCashFlow,
   [growthRate],
   terminalPE,
@@ -29,7 +31,8 @@ The first free cash flow can sometimes be found in the cash flow statement or be
 The growthRate should be provided as an array. Each value of this array will affect a portion of the years depending on the amount of values provided. 
 
 Example: [0.05, 0.02] - the applied growth rate will be 5% for the first 5 years and 2% for the last 5.
-Example: [0.07] - the applied growth rate will be 7%
+
+Example: [0.07] - the applied growth rate will be 7%.
 
 ### terminalPE
 
