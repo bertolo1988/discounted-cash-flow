@@ -1,8 +1,8 @@
 {
-  "name": "intrinsic-value",
+  "name": "discounted-cash-flow",
   "version": "1.0.0",
-  "description": "Calculates the present value of future cash flows.",
-  "main": "src/IntrinsicValue.js",
+  "description": "Calculates the present value of future cash flows with a margin of safety.",
+  "main": "src/DiscountedCashFlow.js",
   "devDependencies": {
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
@@ -23,12 +23,12 @@
   },
   "keywords": [
     "cashflow",
-    "cash",
     "present",
-    "value",
     "valuation",
-    "stocks",
-    "investing"
+    "investing",
+    "dcf",
+    "intrinsic",
+    "value"
   ],
   "homepage": "https://github.com/bertolo1988/dcf#readme",
   "author": "bertolo1988 <tiagobertolo@gmail.com> (https://github.com/bertolo1988)",

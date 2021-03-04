@@ -2,7 +2,7 @@ const _ = require('lodash');
 
 const MAX_YEARS = 10;
 
-class IntrinsicValue {
+class DiscountedCashFlow {
   static get MAX_YEARS() {
     return MAX_YEARS;
   }
@@ -14,8 +14,8 @@ class IntrinsicValue {
 
   static getPresentValueFutureFlows(fcfArray, discountRate) {
     let result = [];
-    for (let i = 0; i < IntrinsicValue.MAX_YEARS; i++) {
-      const presentValue = IntrinsicValue.getDiscountedValueByYear(
+    for (let i = 0; i < DiscountedCashFlow.MAX_YEARS; i++) {
+      const presentValue = DiscountedCashFlow.getDiscountedValueByYear(
         fcfArray[i],
         discountRate,
         i + 1
@@ -26,7 +26,7 @@ class IntrinsicValue {
   }
 
   static getGrowthRateForYear(growthRates, yearIndex) {
-    let yearsByRate = IntrinsicValue.MAX_YEARS / growthRates.length;
+    let yearsByRate = DiscountedCashFlow.MAX_YEARS / growthRates.length;
     let rateIndex = Math.min(
       Math.floor(yearIndex / yearsByRate),
       growthRates.length - 1
@@ -36,9 +36,9 @@ class IntrinsicValue {
 
   static getGrowthOfValue(firstValue, growthRates) {
     let result = [firstValue];
-    for (let i = 1; i < IntrinsicValue.MAX_YEARS; i++) {
+    for (let i = 1; i < DiscountedCashFlow.MAX_YEARS; i++) {
       let previous = result[i - 1];
-      let growthRate = IntrinsicValue.getGrowthRateForYear(growthRates, i);
+      let growthRate = DiscountedCashFlow.getGrowthRateForYear(growthRates, i);
       let rawFreeCashFlow = previous + previous * growthRate;
       result.push(rawFreeCashFlow);
     }
@@ -59,6 +59,14 @@ class IntrinsicValue {
     );
   }
 
+  /**
+   * Valuation method used to estimate the value of an investment based on its expected future cash flows.
+   * @param {*} freeCashFlow - initial free cash flow
+   * @param {*} growthRates - array of growth rates that will affect the initial free cash flow over the years
+   * @param {*} terminalPE - expected price to earnings ratio at the end of the 10 year period
+   * @param {*} discountRate - discount rate or margin of safety
+   * @param {*} decimals - rounding precision, defaults to 2
+   */
   static calculate(
     freeCashFlow,
     growthRates = [0],
@@ -66,24 +74,24 @@ class IntrinsicValue {
     discountRate = 0.1,
     decimals = 2
   ) {
-    let futureCashFlows = IntrinsicValue.getGrowthOfValue(
+    let futureCashFlows = DiscountedCashFlow.getGrowthOfValue(
       freeCashFlow,
       growthRates
     );
-    let presentValueFutureCashFlows = IntrinsicValue.getPresentValueFutureFlows(
+    let presentValueFutureCashFlows = DiscountedCashFlow.getPresentValueFutureFlows(
       futureCashFlows,
       discountRate
     );
-    const valueFutureSale = IntrinsicValue.getFutureSaleValue(
+    const valueFutureSale = DiscountedCashFlow.getFutureSaleValue(
       futureCashFlows,
       terminalPE
     );
-    let presentValueFutureSale = IntrinsicValue.getDiscountedValueByYear(
+    let presentValueFutureSale = DiscountedCashFlow.getDiscountedValueByYear(
       valueFutureSale,
       discountRate,
       10
     );
-    const totalPresentValue = IntrinsicValue.getTotalPresentValue(
+    const totalPresentValue = DiscountedCashFlow.getTotalPresentValue(
       presentValueFutureCashFlows,
       presentValueFutureSale
     );
@@ -99,4 +107,4 @@ class IntrinsicValue {
   }
 }
 
-module.exports = IntrinsicValue;
+module.exports = DiscountedCashFlow;

@@ -1,18 +1,20 @@
-# intrinsic-value
+# discounted-cash-flow
 
-Calculates present value of future cash flows commonly refered as Intrinsic value.
-Based on [Investing with Tom video](https://www.youtube.com/watch?v=cI8ZSf0nkFs).
+Discounted cash flow (DCF) is a valuation method used to estimate the value of an investment based on its expected future cash flows. DCF analysis attempts to figure out the value of an investment today, based on projections of how much money it will generate in the future.
+
+This applies to investment decisions of investors in companies or securities, such as acquiring a company, investing in a technology startup or buying a stock, and for business owners and managers looking to make capital budgeting or operating expenditures decisions such as opening a new factory, purchasing or leasing new equipmen
+
 
 ## Installation
 
-`npm install intrinsic-value --save`
+`npm install discounted-cash-flow --save`
 
 ## How to use
 
-Check [./test/IntrinsicValue.spec.js] for examples.
+Check [./test/DiscountedCashFlow.spec.js] for examples.
 
 ```
-IntrinsicValue.calculate(
+DiscountedCashFlow.calculate(
   firstFreeCashFlow,
   [growthRate],
   terminalPE,
@@ -73,3 +75,9 @@ Represents the intrinsic value of company operation or the "fair" enterprise val
 ## Test
 
 `npm run test`
+
+## References
+
+[Discounted Cash Flow (DCF)](https://www.investopedia.com/terms/d/dcf.asp)
+
+[How To Calculate Intrinsic Value, Investing with Tom](https://www.youtube.com/watch?v=cI8ZSf0nkFs).

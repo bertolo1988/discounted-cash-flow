@@ -1,17 +1,17 @@
 require('should');
 const _ = require('lodash');
-const IntrinsicValue = require('../src/IntrinsicValue');
+const DiscountedCashFlow = require('../src/DiscountedCashFlow');
 
-describe('IntrinsicValue', async () => {
+describe('DiscountedCashFlow', async () => {
   describe('getGrowthRateForYear', () => {
     it('should get 0.1 for all years', () => {
       const growthRates = [0.1];
       for (
         let yearIndex = 0;
-        yearIndex < IntrinsicValue.MAX_YEARS;
+        yearIndex < DiscountedCashFlow.MAX_YEARS;
         yearIndex++
       ) {
-        const selectedGrowthRate = IntrinsicValue.getGrowthRateForYear(
+        const selectedGrowthRate = DiscountedCashFlow.getGrowthRateForYear(
           growthRates,
           yearIndex
         );
@@ -21,7 +21,7 @@ describe('IntrinsicValue', async () => {
 
     it('should get 0.4 for year 6, index 5', () => {
       const growthRates = [0.5, 0.4];
-      const selectedGrowthRate = IntrinsicValue.getGrowthRateForYear(
+      const selectedGrowthRate = DiscountedCashFlow.getGrowthRateForYear(
         growthRates,
         5
       );
@@ -30,7 +30,7 @@ describe('IntrinsicValue', async () => {
 
     it('should get 0.5 for year 5, index 4', () => {
       const growthRates = [0.5, 0.4];
-      const selectedGrowthRate = IntrinsicValue.getGrowthRateForYear(
+      const selectedGrowthRate = DiscountedCashFlow.getGrowthRateForYear(
         growthRates,
         4
       );
@@ -39,7 +39,7 @@ describe('IntrinsicValue', async () => {
 
     it('should get 0.2 for year 10, index 9', () => {
       const growthRates = [0.5, 0.4, 0.2];
-      const selectedGrowthRate = IntrinsicValue.getGrowthRateForYear(
+      const selectedGrowthRate = DiscountedCashFlow.getGrowthRateForYear(
         growthRates,
         9
       );
@@ -48,7 +48,7 @@ describe('IntrinsicValue', async () => {
 
     it('should get 0.1 for year 1, index 0', () => {
       const growthRates = [0.1, 0.4, 0.2];
-      const selectedGrowthRate = IntrinsicValue.getGrowthRateForYear(
+      const selectedGrowthRate = DiscountedCashFlow.getGrowthRateForYear(
         growthRates,
         0
       );
@@ -57,41 +57,41 @@ describe('IntrinsicValue', async () => {
 
     it('should retrieve same rate for every 2 years', () => {
       const growthRates = [0.4, 0.1, 0.7, 0.8, 0.2];
-      IntrinsicValue.getGrowthRateForYear(growthRates, 0).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 0).should.equal(
         growthRates[0]
       );
-      IntrinsicValue.getGrowthRateForYear(growthRates, 1).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 1).should.equal(
         growthRates[0]
       );
-      IntrinsicValue.getGrowthRateForYear(growthRates, 2).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 2).should.equal(
         growthRates[1]
       );
-      IntrinsicValue.getGrowthRateForYear(growthRates, 3).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 3).should.equal(
         growthRates[1]
       );
-      IntrinsicValue.getGrowthRateForYear(growthRates, 4).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 4).should.equal(
         growthRates[2]
       );
-      IntrinsicValue.getGrowthRateForYear(growthRates, 5).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 5).should.equal(
         growthRates[2]
       );
-      IntrinsicValue.getGrowthRateForYear(growthRates, 6).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 6).should.equal(
         growthRates[3]
       );
-      IntrinsicValue.getGrowthRateForYear(growthRates, 7).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 7).should.equal(
         growthRates[3]
       );
-      IntrinsicValue.getGrowthRateForYear(growthRates, 8).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 8).should.equal(
         growthRates[4]
       );
-      IntrinsicValue.getGrowthRateForYear(growthRates, 9).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 9).should.equal(
         growthRates[4]
       );
     });
 
     it('should retrieve last rate if it goes over maximum number of years', () => {
       const growthRates = [0.4, 0.1, 0.7, 0.8, 0.2];
-      IntrinsicValue.getGrowthRateForYear(growthRates, 11).should.equal(
+      DiscountedCashFlow.getGrowthRateForYear(growthRates, 11).should.equal(
         growthRates[4]
       );
     });
@@ -99,7 +99,7 @@ describe('IntrinsicValue', async () => {
     it('should get different rate for every year', () => {
       const growthRates = Array.from(Array(10).keys());
       growthRates.map((growthRate, index) => {
-        const selectedGrowthRate = IntrinsicValue.getGrowthRateForYear(
+        const selectedGrowthRate = DiscountedCashFlow.getGrowthRateForYear(
           growthRates,
           index
         );
@@ -113,7 +113,7 @@ describe('IntrinsicValue', async () => {
       const firstValue = 58.896;
       const growthRates = [0.12, 0.07];
       const decimals = 2;
-      const freeCashFlows = IntrinsicValue.getGrowthOfValue(
+      const freeCashFlows = DiscountedCashFlow.getGrowthOfValue(
         firstValue,
         growthRates
       );
@@ -135,7 +135,7 @@ describe('IntrinsicValue', async () => {
     it('should calculate growth with a rate of 0', () => {
       const firstValue = 10;
       const growthRates = [0];
-      const freeCashFlows = IntrinsicValue.getGrowthOfValue(
+      const freeCashFlows = DiscountedCashFlow.getGrowthOfValue(
         firstValue,
         growthRates
       );
@@ -146,7 +146,7 @@ describe('IntrinsicValue', async () => {
       const firstValue = 58.896;
       const growthRates = [-0.03, -0.01];
       const decimals = 1;
-      const freeCashFlows = IntrinsicValue.getGrowthOfValue(
+      const freeCashFlows = DiscountedCashFlow.getGrowthOfValue(
         firstValue,
         growthRates
       );
@@ -171,7 +171,7 @@ describe('IntrinsicValue', async () => {
       const value = 106.1;
       const discountRate = 0.1;
       const year = 7;
-      const discountedValue = IntrinsicValue.getDiscountedValueByYear(
+      const discountedValue = DiscountedCashFlow.getDiscountedValueByYear(
         value,
         discountRate,
         year
@@ -195,7 +195,7 @@ describe('IntrinsicValue', async () => {
         50.11
       ];
       const presentValueFutureSale = 751.69;
-      const result = IntrinsicValue.getTotalPresentValue(
+      const result = DiscountedCashFlow.getTotalPresentValue(
         presentValueFutureCashFlows,
         presentValueFutureSale
       );
@@ -219,7 +219,7 @@ describe('IntrinsicValue', async () => {
       ];
       const discountRate = 0.1;
       const decimals = 2;
-      const rawPresentValues = IntrinsicValue.getPresentValueFutureFlows(
+      const rawPresentValues = DiscountedCashFlow.getPresentValueFutureFlows(
         appleFreeCashFlow,
         discountRate
       );
@@ -248,7 +248,7 @@ describe('IntrinsicValue', async () => {
       let freeCashFlow = 58.896;
       let terminalPE = 15;
       let discountRate = 0.1;
-      let result = IntrinsicValue.calculate(
+      let result = DiscountedCashFlow.calculate(
         freeCashFlow,
         [growthRateUntilFive, growthRateUntilTen],
         terminalPE,
