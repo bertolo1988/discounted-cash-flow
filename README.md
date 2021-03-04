@@ -2,8 +2,13 @@
 
 Discounted cash flow (DCF) is a valuation method used to estimate the value of an investment based on its expected future cash flows. DCF analysis attempts to figure out the value of an investment today, based on projections of how much money it will generate in the future.
 
-This applies to investment decisions of investors in companies or securities, such as acquiring a company, investing in a technology startup or buying a stock, and for business owners and managers looking to make capital budgeting or operating expenditures decisions such as opening a new factory, purchasing or leasing new equipmen
+The purpose of DCF analysis is to estimate the money an investor would receive from an investment, adjusted for the time value of money. The time value of money assumes that a dollar today is worth more than a dollar tomorrow because it can be invested. As such, a DCF analysis is appropriate in any situation where a person is paying money in the present with expectations of receiving more money in the future.
 
+## References
+
+[Discounted Cash Flow (DCF)](https://www.investopedia.com/terms/d/dcf.asp)
+
+[How To Calculate Intrinsic Value, Investing with Tom](https://www.youtube.com/watch?v=cI8ZSf0nkFs).
 
 ## Installation
 
@@ -76,8 +81,3 @@ Represents the intrinsic value of company operation or the "fair" enterprise val
 
 `npm run test`
 
-## References
-
-[Discounted Cash Flow (DCF)](https://www.investopedia.com/terms/d/dcf.asp)
-
-[How To Calculate Intrinsic Value, Investing with Tom](https://www.youtube.com/watch?v=cI8ZSf0nkFs).
