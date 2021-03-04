@@ -21,6 +21,8 @@ The purpose of DCF analysis is to estimate the money an investor would receive f
 Check tests folder for examples.
 
 ```
+const DiscountedCashFlow = require("discounted-cash-flow");
+
 DiscountedCashFlow.calculate(
   firstFreeCashFlow,
   [growthRate],
