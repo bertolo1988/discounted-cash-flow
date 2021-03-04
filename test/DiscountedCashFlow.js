@@ -204,7 +204,7 @@ describe('DiscountedCashFlow', async () => {
   });
 
   describe('getPresentValueFutureFlows', () => {
-    it('calculate prevent value of apple future cash flows', () => {
+    it('calculate present value of apple future cash flows', () => {
       const appleFreeCashFlow = [
         58.9,
         65.96,
