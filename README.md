@@ -26,7 +26,7 @@ const DiscountedCashFlow = require("discounted-cash-flow");
 DiscountedCashFlow.calculate(
   firstFreeCashFlow,
   [growthRate],
-  terminalPE,
+  terminalFcfMultiple,
   discountRate,
   decimals);
 ```
@@ -45,7 +45,7 @@ Example: [0.05, 0.02] - the applied growth rate will be 5% for the first 5 years
 
 Example: [0.07] - the applied growth rate will be 7%.
 
-### terminalPE
+### terminalFcfMultiple
 
 Expected price to earnings ratio at the end of the calculation.
 
@@ -61,15 +61,15 @@ Desired rounding precision. Defaults to 2.
 
 ### futureCashFlows
 
-Estimation of future cash flows using the provided growth rate.
+Estimation of the nominmal future cash flows using the provided growth rate.
 
 ### presentValueFutureCashFlows
 
-Present value of each one of the future cash flows.
+Present value of each one of the future cash flows discounted to the present.
 
 ### valueFutureSale
 
-Last free cash flow x PE ratio.
+Last free cash flow x terminalFcfMultiple
 
 ### presentValueFutureSale
 

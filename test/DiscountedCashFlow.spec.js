@@ -201,12 +201,12 @@ describe('DiscountedCashFlow', async () => {
       let growthRateUntilFive = 0.12;
       let growthRateUntilTen = 0.07;
       let freeCashFlow = 58.896;
-      let terminalPE = 15;
+      let terminalFcfMultiple = 15;
       let discountRate = 0.1;
       let result = DiscountedCashFlow.calculate(
         freeCashFlow,
         [growthRateUntilFive, growthRateUntilTen],
-        terminalPE,
+        terminalFcfMultiple,
         discountRate
       );
       result.should.be.eql({

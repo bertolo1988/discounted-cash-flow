@@ -1,6 +1,6 @@
 {
   "name": "discounted-cash-flow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Calculates the present value of future cash flows with a margin of safety.",
   "main": "src/DiscountedCashFlow.js",
   "devDependencies": {

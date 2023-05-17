@@ -45,8 +45,8 @@ class DiscountedCashFlow {
     return result;
   }
 
-  static getFutureSaleValue(fcfArray, terminalPE) {
-    return fcfArray[fcfArray.length - 1] * terminalPE;
+  static getFutureSaleValue(fcfArray, terminalFcfMultiple) {
+    return fcfArray[fcfArray.length - 1] * terminalFcfMultiple;
   }
 
   static getTotalPresentValue(
@@ -63,14 +63,14 @@ class DiscountedCashFlow {
    * Valuation method used to estimate the value of an investment based on its expected future cash flows.
    * @param {*} freeCashFlow - initial free cash flow
    * @param {*} growthRates - array of growth rates that will affect the initial free cash flow over the years
-   * @param {*} terminalPE - expected price to earnings ratio at the end of the 10 year period
+   * @param {*} terminalFcfMultiple - expected price to earnings ratio at the end of the 10 year period
    * @param {*} discountRate - discount rate or margin of safety
    * @param {*} decimals - rounding precision, defaults to 2
    */
   static calculate(
     freeCashFlow,
     growthRates = [0],
-    terminalPE = 10,
+    terminalFcfMultiple = 10,
     discountRate = 0.1,
     decimals = 2
   ) {
@@ -85,7 +85,7 @@ class DiscountedCashFlow {
       );
     const valueFutureSale = DiscountedCashFlow.getFutureSaleValue(
       futureCashFlows,
-      terminalPE
+      terminalFcfMultiple
     );
     let presentValueFutureSale = DiscountedCashFlow.getDiscountedValueByYear(
       valueFutureSale,
