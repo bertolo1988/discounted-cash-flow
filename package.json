@@ -4,17 +4,17 @@
   "description": "Calculates the present value of future cash flows with a margin of safety.",
   "main": "src/DiscountedCashFlow.js",
   "devDependencies": {
-    "eslint": "^7.12.1",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-sort-exports": "^0.3.2",
-    "mocha": "^8.2.0",
-    "prettier": "2.1.2",
+    "eslint": "^8.40.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-sort-exports": "^0.8.0",
+    "mocha": "^10.2.0",
+    "prettier": "2.8.8",
     "should": "^13.2.3",
-    "sinon": "^9.2.1"
+    "sinon": "^15.0.4"
   },
   "scripts": {
-    "prettier:fix": "npx prettier --check .",
+    "prettier:fix": "npx prettier --write .",
     "prettier:check": "npx prettier --check .",
     "clean": "rm -rf node_modules && npm i",
     "lint": "eslint .",

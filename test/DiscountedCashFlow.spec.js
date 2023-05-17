@@ -119,16 +119,7 @@ describe('DiscountedCashFlow', async () => {
       );
       let roundedFreeCashFlows = freeCashFlows.map((e) => _.round(e, decimals));
       roundedFreeCashFlows.should.be.eql([
-        58.9,
-        65.96,
-        73.88,
-        82.74,
-        92.67,
-        99.16,
-        106.1,
-        113.53,
-        121.48,
-        129.98
+        58.9, 65.96, 73.88, 82.74, 92.67, 99.16, 106.1, 113.53, 121.48, 129.98
       ]);
     });
 
@@ -152,16 +143,7 @@ describe('DiscountedCashFlow', async () => {
       );
       let roundedFreeCashFlows = freeCashFlows.map((e) => _.round(e, decimals));
       roundedFreeCashFlows.should.be.eql([
-        58.9,
-        57.1,
-        55.4,
-        53.8,
-        52.1,
-        51.6,
-        51.1,
-        50.6,
-        50.1,
-        49.6
+        58.9, 57.1, 55.4, 53.8, 52.1, 51.6, 51.1, 50.6, 50.1, 49.6
       ]);
     });
   });
@@ -183,16 +165,7 @@ describe('DiscountedCashFlow', async () => {
   describe('getTotalPresentValue', () => {
     it('calculate total present value: future cash flows plus sale value, both discounted to present value', () => {
       const presentValueFutureCashFlows = [
-        53.54,
-        54.52,
-        55.51,
-        56.52,
-        57.54,
-        55.97,
-        54.45,
-        52.96,
-        51.52,
-        50.11
+        53.54, 54.52, 55.51, 56.52, 57.54, 55.97, 54.45, 52.96, 51.52, 50.11
       ];
       const presentValueFutureSale = 751.69;
       const result = DiscountedCashFlow.getTotalPresentValue(
@@ -206,16 +179,7 @@ describe('DiscountedCashFlow', async () => {
   describe('getPresentValueFutureFlows', () => {
     it('calculate present value of apple future cash flows', () => {
       const appleFreeCashFlow = [
-        58.9,
-        65.96,
-        73.88,
-        82.74,
-        92.67,
-        99.16,
-        106.1,
-        113.53,
-        121.48,
-        129.98
+        58.9, 65.96, 73.88, 82.74, 92.67, 99.16, 106.1, 113.53, 121.48, 129.98
       ];
       const discountRate = 0.1;
       const decimals = 2;
@@ -227,16 +191,7 @@ describe('DiscountedCashFlow', async () => {
         _.round(e, decimals)
       );
       roundedPresentValues.should.be.eql([
-        53.55,
-        54.51,
-        55.51,
-        56.51,
-        57.54,
-        55.97,
-        54.45,
-        52.96,
-        51.52,
-        50.11
+        53.55, 54.51, 55.51, 56.51, 57.54, 55.97, 54.45, 52.96, 51.52, 50.11
       ]);
     });
   });
@@ -256,28 +211,10 @@ describe('DiscountedCashFlow', async () => {
       );
       result.should.be.eql({
         futureCashFlows: [
-          58.9,
-          65.96,
-          73.88,
-          82.74,
-          92.67,
-          99.16,
-          106.1,
-          113.53,
-          121.48,
-          129.98
+          58.9, 65.96, 73.88, 82.74, 92.67, 99.16, 106.1, 113.53, 121.48, 129.98
         ],
         presentValueFutureCashFlows: [
-          53.54,
-          54.52,
-          55.51,
-          56.52,
-          57.54,
-          55.97,
-          54.45,
-          52.96,
-          51.52,
-          50.11
+          53.54, 54.52, 55.51, 56.52, 57.54, 55.97, 54.45, 52.96, 51.52, 50.11
         ],
         valueFutureSale: 1949.7,
         presentValueFutureSale: 751.69,

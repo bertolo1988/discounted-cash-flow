@@ -78,10 +78,11 @@ class DiscountedCashFlow {
       freeCashFlow,
       growthRates
     );
-    let presentValueFutureCashFlows = DiscountedCashFlow.getPresentValueFutureFlows(
-      futureCashFlows,
-      discountRate
-    );
+    let presentValueFutureCashFlows =
+      DiscountedCashFlow.getPresentValueFutureFlows(
+        futureCashFlows,
+        discountRate
+      );
     const valueFutureSale = DiscountedCashFlow.getFutureSaleValue(
       futureCashFlows,
       terminalPE
