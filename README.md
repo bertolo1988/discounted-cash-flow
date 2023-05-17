@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/bertolo1988/discounted-cash-flow.svg?branch=main)](https://travis-ci.org/bertolo1988/discounted-cash-flow)
-
 # discounted-cash-flow
 
 Discounted cash flow (DCF) is a valuation method used to estimate the value of an investment based on its expected future cash flows. DCF analysis attempts to figure out the value of an investment today, based on projections of how much money it will generate in the future.
@@ -31,6 +29,29 @@ DiscountedCashFlow.calculate(
   decimals);
 ```
 
+Example output:
+
+```
+{
+	"futureCashFlows": [
+		58.9, 65.96,
+		73.88, 82.74,
+		92.67, 99.16,
+		106.1, 113.53,
+		121.48, 129.98
+	],
+	"presentValueFutureCashFlows": [
+		53.54, 54.52, 55.51,
+		56.52, 57.54, 55.97,
+		54.45, 52.96, 51.52,
+		50.11
+	],
+	"valueFutureSale": 1949.7,
+	"presentValueFutureSale": 751.69,
+	"totalPresentValue": 1294.33
+}
+```
+
 ## inputs
 
 ### firstFreeCashFlow
@@ -47,7 +68,7 @@ Example: [0.07] - the applied growth rate will be 7%.
 
 ### terminalFcfMultiple
 
-Expected price to earnings ratio at the end of the calculation.
+Expected price to free cash flow ratio at the end of the calculation.
 
 ### discountRate
 
