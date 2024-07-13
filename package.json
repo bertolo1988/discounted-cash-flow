@@ -1,6 +1,6 @@
 {
   "name": "discounted-cash-flow",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Calculates the present value of future cash flows with a margin of safety.",
   "main": "src/DiscountedCashFlow.js",
   "devDependencies": {
@@ -39,8 +39,5 @@
   },
   "bugs": {
     "url": "https://github.com/bertolo1988/dcf/issues"
-  },
-  "dependencies": {
-    "lodash": "^4.17.21"
   }
 }

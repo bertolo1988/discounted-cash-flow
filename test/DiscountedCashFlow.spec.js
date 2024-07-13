@@ -1,5 +1,5 @@
 require('should');
-const _ = require('lodash');
+const { roundNumber } = require('../src/Utils');
 const DiscountedCashFlow = require('../src/DiscountedCashFlow');
 
 describe('DiscountedCashFlow', async () => {
@@ -117,7 +117,9 @@ describe('DiscountedCashFlow', async () => {
         firstValue,
         growthRates
       );
-      let roundedFreeCashFlows = freeCashFlows.map((e) => _.round(e, decimals));
+      let roundedFreeCashFlows = freeCashFlows.map((e) =>
+        roundNumber(e, decimals)
+      );
       roundedFreeCashFlows.should.be.eql([
         58.9, 65.96, 73.88, 82.74, 92.67, 99.16, 106.1, 113.53, 121.48, 129.98
       ]);
@@ -141,7 +143,9 @@ describe('DiscountedCashFlow', async () => {
         firstValue,
         growthRates
       );
-      let roundedFreeCashFlows = freeCashFlows.map((e) => _.round(e, decimals));
+      let roundedFreeCashFlows = freeCashFlows.map((e) =>
+        roundNumber(e, decimals)
+      );
       roundedFreeCashFlows.should.be.eql([
         58.9, 57.1, 55.4, 53.8, 52.1, 51.6, 51.1, 50.6, 50.1, 49.6
       ]);
@@ -188,7 +192,7 @@ describe('DiscountedCashFlow', async () => {
         discountRate
       );
       let roundedPresentValues = rawPresentValues.map((e) =>
-        _.round(e, decimals)
+        roundNumber(e, decimals)
       );
       roundedPresentValues.should.be.eql([
         53.55, 54.51, 55.51, 56.51, 57.54, 55.97, 54.45, 52.96, 51.52, 50.11

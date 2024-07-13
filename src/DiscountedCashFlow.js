@@ -1,5 +1,4 @@
-const _ = require('lodash');
-
+const { roundNumber } = require('./Utils');
 const MAX_YEARS = 10;
 
 class DiscountedCashFlow {
@@ -97,13 +96,13 @@ class DiscountedCashFlow {
       presentValueFutureSale
     );
     return {
-      futureCashFlows: futureCashFlows.map((e) => _.round(e, decimals)),
+      futureCashFlows: futureCashFlows.map((e) => roundNumber(e, decimals)),
       presentValueFutureCashFlows: presentValueFutureCashFlows.map((e) =>
-        _.round(e, decimals)
+        roundNumber(e, decimals)
       ),
-      valueFutureSale: _.round(valueFutureSale, decimals),
-      presentValueFutureSale: _.round(presentValueFutureSale, decimals),
-      totalPresentValue: _.round(totalPresentValue, decimals)
+      valueFutureSale: roundNumber(valueFutureSale, decimals),
+      presentValueFutureSale: roundNumber(presentValueFutureSale, decimals),
+      totalPresentValue: roundNumber(totalPresentValue, decimals)
     };
   }
 }

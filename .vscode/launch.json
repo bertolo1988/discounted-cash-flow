@@ -23,7 +23,7 @@
     {
       "type": "node",
       "request": "launch",
-      "runtimeExecutable": "/usr/local/bin/node",
+      // "runtimeExecutable": "/usr/local/bin/node",
       "name": "Mocha Current File",
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
       "args": ["--timeout", "999999", "--colors", "--bail", "${file}"],
